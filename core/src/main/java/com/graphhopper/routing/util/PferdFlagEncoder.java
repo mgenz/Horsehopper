@@ -42,11 +42,6 @@ public class PferdFlagEncoder extends BikeCommonFlagEncoder {
 
     public PferdFlagEncoder(int speedBits, double speedFactor, int maxTurnCosts, boolean speedTwoDirections) {
         super(speedBits, speedFactor, maxTurnCosts, speedTwoDirections);
-        addPushingSection("path");
-        addPushingSection("footway");
-        addPushingSection("pedestrian");
-        addPushingSection("steps");
-        addPushingSection("platform");
 
         avoidHighwayTags.add("trunk");
         avoidHighwayTags.add("trunk_link");
@@ -54,6 +49,7 @@ public class PferdFlagEncoder extends BikeCommonFlagEncoder {
         avoidHighwayTags.add("primary_link");
         avoidHighwayTags.add("secondary");
         avoidHighwayTags.add("secondary_link");
+        avoidHighwayTags.add("cycleway");
 
         preferHighwayTags.add("bridleway");
         preferHighwayTags.add("path");

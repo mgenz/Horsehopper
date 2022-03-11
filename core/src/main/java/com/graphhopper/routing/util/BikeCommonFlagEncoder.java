@@ -149,6 +149,10 @@ abstract public class BikeCommonFlagEncoder extends AbstractFlagEncoder {
         final int CYCLEWAY_SPEED = 18;  // Make sure cycleway and path use same speed value, see #634
         setHighwaySpeed("cycleway", CYCLEWAY_SPEED);
         setHighwaySpeed("path", 10);
+
+        //Reiten
+        setHighwaySpeed("bridleway", 20);
+
         setHighwaySpeed("footway", 6);
         setHighwaySpeed("platform", 6);
         setHighwaySpeed("pedestrian", 6);
@@ -174,9 +178,6 @@ abstract public class BikeCommonFlagEncoder extends AbstractFlagEncoder {
         setHighwaySpeed("motorway_link", 18);
         avoidHighwayTags.add("motorway");
         avoidHighwayTags.add("motorway_link");
-
-        setHighwaySpeed("bridleway", 6);
-        avoidHighwayTags.add("bridleway");
 
         routeMap.put(INTERNATIONAL, BEST.getValue());
         routeMap.put(NATIONAL, BEST.getValue());
@@ -251,7 +252,7 @@ abstract public class BikeCommonFlagEncoder extends AbstractFlagEncoder {
             return EncodingManager.Access.WAY;
 
         // accept only if explicitly tagged for bike usage
-        if ("motorway".equals(highwayValue) || "motorway_link".equals(highwayValue) || "bridleway".equals(highwayValue))
+        if ("motorway".equals(highwayValue) || "motorway_link".equals(highwayValue))
             return EncodingManager.Access.CAN_SKIP;
 
         if (way.hasTag("motorroad", "yes"))
