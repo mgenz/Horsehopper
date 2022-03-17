@@ -87,7 +87,8 @@ abstract public class BikeCommonFlagEncoder extends AbstractFlagEncoder {
         passByDefaultBarriers.add("gate");
         passByDefaultBarriers.add("swing_gate");
         passByDefaultBarriers.add("cattle_grid");
-        passByDefaultBarriers.add("chain");
+        // chain wird herausgenommen, da ein Pferd darüber steigen kann
+        // passByDefaultBarriers.add("chain");
         passByDefaultBarriers.add("yes"); // see #2400
 
         blockByDefaultBarriers.add("fence");
@@ -151,7 +152,7 @@ abstract public class BikeCommonFlagEncoder extends AbstractFlagEncoder {
         setHighwaySpeed("path", 10);
 
         //Reiten
-        setHighwaySpeed("bridleway", 20);
+        setHighwaySpeed("bridleway", 6);
 
         setHighwaySpeed("footway", 6);
         setHighwaySpeed("platform", 6);
