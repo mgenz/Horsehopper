@@ -54,6 +54,7 @@ public class BikeFlagEncoder extends BikeCommonFlagEncoder {
         avoidHighwayTags.add("primary_link");
         avoidHighwayTags.add("secondary");
         avoidHighwayTags.add("secondary_link");
+        avoidHighwayTags.add("bridleway");
 
         // preferHighwayTags.add("road");
         preferHighwayTags.add("service");

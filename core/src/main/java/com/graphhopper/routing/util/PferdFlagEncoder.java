@@ -20,10 +20,10 @@ package com.graphhopper.routing.util;
 import com.graphhopper.util.PMap;
 
 /**
- * Specifies the settings for cycletouring/trekking
+ * Specifies the settings for horse riding
  *
- * @author ratrun
- * @author Peter Karich
+ * @author Louis Trinkle
+ * @author Marvin Genz
  */
 public class PferdFlagEncoder extends BikeCommonFlagEncoder {
     public PferdFlagEncoder() {
@@ -49,31 +49,64 @@ public class PferdFlagEncoder extends BikeCommonFlagEncoder {
         avoidHighwayTags.add("primary_link");
         avoidHighwayTags.add("secondary");
         avoidHighwayTags.add("secondary_link");
+        // nach den Regelungen für Brandenburg sollten folgende HighwayTags vermieden werden
         avoidHighwayTags.add("cycleway");
+        avoidHighwayTags.add("pedestrian");
+        avoidHighwayTags.add("footway");
 
+        // folgende HighwayTags sind für das Reiten hinzugefügt worden
         preferHighwayTags.add("bridleway");
         preferHighwayTags.add("path");
+        preferHighwayTags.add("track");
         preferHighwayTags.add("service");
         preferHighwayTags.add("tertiary");
         preferHighwayTags.add("tertiary_link");
         preferHighwayTags.add("residential");
         preferHighwayTags.add("unclassified");
 
-        setSmoothnessSpeedFactor(com.graphhopper.routing.ev.Smoothness.EXCELLENT, 1.1d);
+        // Smoothness an Reiten angepasst
+        //
+        // Impassable laut OSM-Wiki nur für motorisierte Fahrzeuge nicht überquerbar
+        // deshalb für Pferde eine sehr langsame Geschwindigkeit
+        setSmoothnessSpeedFactor(com.graphhopper.routing.ev.Smoothness.EXCELLENT, 1.0d);
         setSmoothnessSpeedFactor(com.graphhopper.routing.ev.Smoothness.GOOD, 1.0d);
-        setSmoothnessSpeedFactor(com.graphhopper.routing.ev.Smoothness.INTERMEDIATE, 0.9d);
-        setSmoothnessSpeedFactor(com.graphhopper.routing.ev.Smoothness.BAD, 0.7d);
-        setSmoothnessSpeedFactor(com.graphhopper.routing.ev.Smoothness.VERY_BAD, 0.6d);
+        setSmoothnessSpeedFactor(com.graphhopper.routing.ev.Smoothness.INTERMEDIATE, 1.0d);
+        setSmoothnessSpeedFactor(com.graphhopper.routing.ev.Smoothness.BAD, 0.9d);
+        setSmoothnessSpeedFactor(com.graphhopper.routing.ev.Smoothness.VERY_BAD, 0.7d);
         setSmoothnessSpeedFactor(com.graphhopper.routing.ev.Smoothness.HORRIBLE, 0.5d);
-        setSmoothnessSpeedFactor(com.graphhopper.routing.ev.Smoothness.VERY_HORRIBLE, 0.4d);
+        setSmoothnessSpeedFactor(com.graphhopper.routing.ev.Smoothness.VERY_HORRIBLE, 0.3d);
         // SmoothnessSpeed <= smoothnessFactorPushingSectionThreshold gets mapped to speed PUSHING_SECTION_SPEED
-        setSmoothnessSpeedFactor(com.graphhopper.routing.ev.Smoothness.IMPASSABLE, smoothnessFactorPushingSectionThreshold);
+        setSmoothnessSpeedFactor(com.graphhopper.routing.ev.Smoothness.IMPASSABLE, 0.1d);
 
         blockByDefaultBarriers.add("kissing_gate");
         blockByDefaultBarriers.add("stile");
         blockByDefaultBarriers.add("turnstile");
 
-        setSpecificClassBicycle("touring");
+        //setSpecificClassBicycle("mtb");
+
+        // Access Values leicht angepasst
+        intendedValues.add("agricultural");
+        intendedValues.add("forestry");
+
+        // Geschwindigkeiten
+        setHighwaySpeed("bridleway", 18);
+        setHighwaySpeed("footway", 6);
+        setHighwaySpeed("platform", 6);
+        setHighwaySpeed("pedestrian", 6);
+        setHighwaySpeed("track", 10);
+        setHighwaySpeed("service", 10);
+        setHighwaySpeed("residential", 10);
+        setHighwaySpeed("unclassified", 10);
+        setHighwaySpeed("road", 10);
+        setHighwaySpeed("trunk", 10);
+        setHighwaySpeed("trunk_link", 10);
+        setHighwaySpeed("primary", 10);
+        setHighwaySpeed("primary_link", 10);
+        setHighwaySpeed("secondary", 10);
+        setHighwaySpeed("secondary_link", 10);
+        setHighwaySpeed("tertiary", 10);
+        setHighwaySpeed("tertiary_link", 10);
+
     }
 
     @Override
